@@ -6,7 +6,7 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: v25.12
+  REPO_BRANCH: openwrt-25.12
   FEEDS_CONF: RAX3000Me/feeds.conf.default
   FILES: RAX3000Me/file
   CONFIG_FILE: RAX3000Me/rax3000me.config
@@ -80,6 +80,13 @@ jobs:
       working-directory: ./
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
+
+    - name: Cache Toolchain
+      uses: HiGarfield/cachewrtbuild@main
+      with:
+        ccache: 'true'
+        mixkey: 'rax3000me'
+        prefix: 'openwrt'
 
     - name: Update feeds
       run: |
