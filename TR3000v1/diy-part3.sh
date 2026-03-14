@@ -19,3 +19,7 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/luci-
 # pushd package/luci-app-shadowsocks/tools/po2lmo
 # make && sudo make install
 # popd
+
+
+# 解决rust编译时llvm在CI环境下载失败的问题
+sed -i 's|--set=llvm.download-ci-llvm=true|--set=llvm.download-ci-llvm=false|g' feeds/packages/lang/rust/Makefile
