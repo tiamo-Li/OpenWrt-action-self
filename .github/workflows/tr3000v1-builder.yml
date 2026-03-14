@@ -6,7 +6,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-25.12
+  REPO_BRANCH: v25.12.0
   FEEDS_CONF: TR3000v1/feeds.conf.default
   FILES: TR3000v1/files
   CONFIG_FILE: TR3000v1/tr3000v1.config
