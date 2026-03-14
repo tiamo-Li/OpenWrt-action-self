@@ -81,12 +81,16 @@ jobs:
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Update feeds
+    - name: Load custom feeds
       run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
-        ./scripts/feeds update -a 
+
+    - name: Update feeds
+      run: |
+        cd openwrt && ./scripts/feeds update -a
 
     # - name: Modify packages
     #   run: |
