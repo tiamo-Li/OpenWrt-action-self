@@ -83,28 +83,28 @@ jobs:
 
     - name: Update feeds
       run: |
-        mv $DIY_P1_SH openwrt/diy-part1.sh
-        chmod +x openwrt/diy-part1.sh
+        chmod +x $DIY_P1_SH
         cd openwrt
-        ./diy-part1.sh && ./scripts/feeds update -a
+        $GITHUB_WORKSPACE/$DIY_P1_SH && ./scripts/feeds update -a
 
     - name: Install feeds
       run: |
-        cd openwrt && ./scripts/feeds install -a
+        # chmod +x $DIY_P2_SH
+        cd openwrt 
+        # $GITHUB_WORKSPACE/$DIY_P2_SH 
+        ./scripts/feeds install -a
 
     - name: Load custom configuration
       run: |
         [ -e $FILES ] && mv $FILES openwrt/files
         mv $CONFIG_FILE openwrt/.config
-        mv $DIY_P3_SH openwrt/diy-part3.sh
-        chmod +x openwrt/diy-part3.sh
-        cd openwrt && ./diy-part3.sh 
+        chmod +x $DIY_P3_SH
+        cd openwrt && $GITHUB_WORKSPACE/$DIY_P3_SH
 
     - name: Download package
       id: package
       run: |
         cd openwrt
-        make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
