@@ -6,7 +6,7 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: openwrt-25.12
+  REPO_BRANCH: v25.12.0
   FEEDS_CONF: RAX3000Me/feeds.conf.default
   FILES: RAX3000Me/file
   CONFIG_FILE: RAX3000Me/rax3000me.config
